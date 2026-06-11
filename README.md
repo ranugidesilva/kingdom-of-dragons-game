@@ -3,12 +3,11 @@
 A Python adventure game where players explore caves and encounter different dragons.
 
 ## Features
-- 5 caves
+- 4 caves to explore
 - Friendly Dragon 🐉
 - Fire Dragon 🔥
 - Ice Dragon ❄️
 - Golden Dragon 👑
 
-## How to Run
-
-python dragon_game.py
+## About the Game
+Choose a cave and see which dragon appears. Try to collect as much gold as possible!
