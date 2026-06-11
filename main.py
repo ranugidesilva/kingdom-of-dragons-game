@@ -1,6 +1,34 @@
 import random
 import time
-#display an introduction
+import sys
+
+gold = 0
+
+friendlyDragon = r"""
+      /\_/\\
+     ( o.o )
+      > ^ <
+"""
+
+fireDragon = r"""
+      /\__/\
+     ( 🔥🔥 )
+      >^^^<
+"""
+
+iceDragon = r"""
+      /\__/\
+     ( ❄️❄️ )
+      >^^^<
+"""
+
+goldenDragon = r"""
+      /\__/\
+     ( 👑👑 )
+      >^^^<
+"""
+
+# display an introduction
 def displayIntro():
     print(r"""
            / \  //\
@@ -12,24 +40,35 @@ def displayIntro():
     """)
 
     print("You are in the KINGDOM OF DRAGONS 🐉")
-    print("In front of you, you see 5 caves")
+    print("In front of you, you see 4 caves")
     print("In one cave, the dragon is friendly and will share treasure with you")
-    print("The other dragon is hungry and will eat you on sight")
+    print("The other dragons are hungry and will eat you on sight")
     print()
-    
+
+
 def chooseCave():
-    cave = ' '
-    cave = input('Cave 1 or 2 or 3 or 4 or 5:')
-    if cave not in '12345':
+    cave = input('Cave 1 or 2 or 3 or 4: ')
+
+    if cave not in '1234':
         print("Error")
         sys.exit(0)
-        return int(cave)
+
+    return int(cave)
+
+
 def checkCave(chosenCave):
-    print('\nYou approach the cave...')
+    global gold
+
+    print('\nYour heart races as you approach the dragon cave...')
     time.sleep(2)
+
+    print('The air grows cold and silent...')
+    time.sleep(2)
+
     print('A large dragon jumps out in front of you!')
     time.sleep(2)
-    print('He opens his jaws and...\n')
+
+    print('It opens its jaws and...\n')
     time.sleep(2)
 
     dragonType = random.choice([
@@ -40,35 +79,50 @@ def checkCave(chosenCave):
     ])
 
     if dragonType == "Friendly Dragon":
+        print(friendlyDragon)
         print("🐉 Friendly Dragon")
         print("Greets you before sharing treasure!")
+        gold += 50
 
     elif dragonType == "Fire Dragon":
+        print(fireDragon)
         print("🔥 Fire Dragon")
         print("Breathes fire and scares you away!")
+        gold -= 25
 
     elif dragonType == "Ice Dragon":
+        print(iceDragon)
         print("❄️ Ice Dragon")
         print("Freezes the cave entrance!")
 
     elif dragonType == "Golden Dragon":
+        print(goldenDragon)
         print("👑 Golden Dragon")
         print("Shares a chest full of gold!")
+        gold += 100
+
+    print("\n💰 Gold:", gold)
+
+
+# Main program
+while True:
+    displayIntro()
+
+    caveNumber = chooseCave()
+    checkCave(caveNumber)
+
+    playAgain = input("\nDo you want to play again? (yes or no): ").lower()
+
+    if playAgain == "yes":
+        print("\nStarting a new adventure...")
+        time.sleep(2)
+
+    elif playAgain == "no":
+        print("\nGame ended")
+        break
+
     else:
-        print('Gobbles you down!\n')
-#Main program
-displayIntro()
-caveNumber = chooseCave()
-checkCave(caveNumber)
+        print("\nInvalid input")
+        break
 
-import time
-playAgain = input("Do you want to play again? (yes or no): ")
-
-if playAgain == "yes":
-    print("Game will restart")
-elif playAgain == "no":
-    print("Game ended")
-else:
-    print("Invalid input")
-time.sleep(3)
-print("Thanks for playing!")
+print("Thanks for playing! 🐉")
