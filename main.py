@@ -103,6 +103,18 @@ def checkCave(chosenCave):
 
     print("\n💰 Gold:", gold)
 
+    # WIN CONDITION
+    if gold >= 200:
+        print("\n🏆 CONGRATULATIONS! 🏆")
+        print("You collected 200 gold and became the Dragon King!")
+        sys.exit()
+
+    # LOSE CONDITION
+    if gold < 0:
+        print("\n💀 GAME OVER 💀")
+        print("You ran out of gold!")
+        sys.exit()
+
 
 # Main program
 while True:
